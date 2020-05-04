@@ -1,0 +1,39 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: tungnt
+ * Date: 10/22/19
+ * Time: 23:53
+ */
+
+namespace Modules\Otp\Providers;
+
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Laravel\Passport\Events\AccessTokenCreated;
+use Laravel\Passport\Events\RefreshTokenCreated;
+use Modules\Otp\Listeners\PruneOldTokens;
+use Modules\Otp\Listeners\RevokeOldTokens;
+
+/**
+ * Class EventServiceProvider
+ * @package Modules\Otp\Providers
+ */
+class EventServiceProvider extends ServiceProvider
+{
+    /**
+     * @var array
+     */
+    protected $listen = [
+
+    ];
+
+    /**
+     * Register any events for your application.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        parent::boot();
+    }
+}

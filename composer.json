@@ -1,0 +1,41 @@
+{
+  "name": "onesite/laravel-module",
+  "description": "Generate a module with model, migration, controller, routes and factory",
+  "keywords": [
+    "laravel",
+    "generators"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "1Site.vn",
+      "email": "hotro@1site.vn",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.2",
+    "illuminate/support": "^6.0",
+    "illuminate/console": "^6.0",
+    "illuminate/filesystem": "^6.0"
+  },
+  "require-dev": {
+    "mockery/mockery": "^1.0",
+    "orchestra/testbench": "~3.0",
+    "phpunit/phpunit": "^8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "OneSite\\Module\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "OneSite\\Module\\": [
+        "src/",
+        "tests/"
+      ],
+      "App\\": "tests/app/"
+    }
+  }
+}

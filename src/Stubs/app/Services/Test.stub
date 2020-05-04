@@ -1,0 +1,26 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: tungnt
+ * Date: 10/22/19
+ * Time: 22:36
+ */
+
+namespace Modules\Otp\Services;
+
+
+/**
+ * Class Test
+ * @package Modules\Otp\Services
+ */
+class Test implements \Modules\Otp\Services\Contract\Test
+{
+    /**
+     * @return mixed|void
+     */
+    public function test()
+    {
+        // TODO: Implement test() method.
+    }
+
+}

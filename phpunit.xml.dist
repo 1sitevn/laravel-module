@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit colors="true">
+    <testsuites>
+        <testsuite name="Application Test Suite">
+            <directory suffix="Test.php">./tests</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <includePath>.</includePath>
+        <env name="NOTIFIER_FIREBASE_KEY" value=""/>
+        <env name="NOTIFIER_FIREBASE_TO_DEVICE" value=""/>
+        <env name="NOTIFIER_FIREBASE_TO_TOPIC" value=""/>
+    </php>
+</phpunit>
