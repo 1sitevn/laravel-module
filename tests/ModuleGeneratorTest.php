@@ -29,7 +29,7 @@ function database_path($suffix)
  */
 function base_path($suffix)
 {
-    return __DIR__ . '/../' . (strpos($suffix, '/') === 0 ? $suffix : '/' . $suffix);
+    return __DIR__ . '/dist' . (strpos($suffix, '/') === 0 ? $suffix : '/' . $suffix);
 }
 
 /**
@@ -44,6 +44,7 @@ function date($format)
 /**
  * Class ModuleGeneratorTest
  * @package OneSite\Module\Commands
+ * PHPUnit test: vendor/bin/phpunit tests/ModuleGeneratorTest.php
  */
 class ModuleGeneratorTest extends TestCase
 {
@@ -54,29 +55,25 @@ class ModuleGeneratorTest extends TestCase
     protected function getPackageProviders($app)
     {
         return [
-            ModuleGeneratorServiceProvider::class,
+            ModuleGeneratorServiceProvider::class
         ];
     }
 
     /**
-     *
+     * PHPUnit test: vendor/bin/phpunit --filter testMakeNewModule tests/ModuleGeneratorTest.php
      */
     public function testMakeNewModule()
     {
-        // When I run php artisan make:module Blue
-        $this->artisan('make:module', ['name' => 'Blue']);
+        $this->artisan('make:module', ['name' => 'admin']);
 
-        // Then I see a new Module has been created in the App namespace
-        // And it has the correct name
-        $this->seeFileWasCreated(app_path('/modules/Blue'));
+        $this->assertTrue(file_exists(base_path('/modules/admin')));
     }
 
     /**
-     * @param $filename
+     * PHPUnit test: vendor/bin/phpunit --filter testModuleHelper tests/ModuleGeneratorTest.php
      */
-    public function seeFileWasCreated($filename)
+    public function testModuleHelper()
     {
-        $this->assertTrue(true);
-        //$this->assertTrue(file_exists($filename));
+        $this->assertTrue(function_exists('module_admin_test_function') && 'admin' === module_admin_test_function());
     }
 }

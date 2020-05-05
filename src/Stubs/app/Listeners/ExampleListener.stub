@@ -1,0 +1,21 @@
+<?php
+
+namespace Modules\MODULE_TITLE\Listeners;
+
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
+
+/**
+ * Class ExampleListener
+ * @package Modules\MODULE_TITLE\Listeners
+ */
+class ExampleListener
+{
+    /**
+     * @param \Modules\MODULE_TITLE\Events\ExampleListener $event
+     */
+    public function handle(\Modules\MODULE_TITLE\Events\ExampleEvent $event)
+    {
+        var_dump($event->data);
+    }
+}

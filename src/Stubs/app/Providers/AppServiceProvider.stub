@@ -1,22 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tungnt
- * Date: 10/22/19
- * Time: 22:41
- */
 
-namespace Modules\Otp\Providers;
+namespace Modules\MODULE_TITLE\Providers;
 
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Modules\Otp\Services\Contract\OtpService;
-use Modules\Otp\Services\TestService;
 
 /**
  * Class AppServiceProvider
- * @package Modules\Otp\Providers
+ * @package Modules\MODULE_TITLE\Providers
  */
 class AppServiceProvider extends ServiceProvider
 {
@@ -41,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
      */
 
     public $singletons = [
-        OtpService::class => TestService::class,
+
     ];
 
     /**
@@ -124,7 +116,7 @@ class AppServiceProvider extends ServiceProvider
     private function registerCommands()
     {
         $this->commands([
-            \Modules\Otp\Console\Commands\Test::class
+            \Modules\MODULE_TITLE\Console\Commands\Test::class
         ]);
     }
 }

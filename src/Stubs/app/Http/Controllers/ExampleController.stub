@@ -1,0 +1,21 @@
+<?php
+
+namespace Modules\MODULE_TITLE\Http\Controllers;
+
+
+/**
+ * Class ControllerClass
+ * @package Modules\MODULE_TITLE\Http\Controllers
+ */
+class ControllerClass extends BaseController
+{
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        return view('test');
+    }
+
+}

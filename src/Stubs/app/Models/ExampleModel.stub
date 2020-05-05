@@ -1,0 +1,19 @@
+<?php
+
+namespace Modules\MODULE_TITLE\Models;
+
+
+use Illuminate\Database\Eloquent\Model;
+
+
+/**
+ * Class ExampleModel
+ * @package Modules\MODULE_TITLE\Models
+ */
+class ExampleModel extends Model
+{
+    /**
+     * @var array
+     */
+    protected $fillable = [];
+}

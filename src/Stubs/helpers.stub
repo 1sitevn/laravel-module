@@ -1,1 +1,8 @@
 <?php
+
+if (!function_exists('module_MODULE_NAME_test_function')) {
+    function module_MODULE_NAME_test_function()
+    {
+        return 'MODULE_NAME';
+    }
+}

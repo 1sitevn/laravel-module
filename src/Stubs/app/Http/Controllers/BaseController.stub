@@ -1,21 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tungnt
- * Date: 10/22/19
- * Time: 22:31
- */
 
-namespace Modules\Otp\Http\Controllers;
+namespace Modules\MODULE_TITLE\Http\Controllers;
 
 
 use Illuminate\Routing\Controller;
 
 /**
- * Class Base
- * @package Modules\Otp\Http\Controllers
+ * Class BaseController
+ * @package Modules\MODULE_TITLE\Http\Controllers
  */
-class Base extends Controller
+class BaseController extends Controller
 {
     /**
      * Base constructor.

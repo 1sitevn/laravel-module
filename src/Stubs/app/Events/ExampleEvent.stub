@@ -1,21 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tungnt
- * Date: 10/22/19
- * Time: 23:54
- */
 
-namespace Modules\Otp\Events;
+namespace Modules\MODULE_TITLE\Events;
 
 
 use App\Events\Event;
 
 /**
- * Class Test
- * @package Modules\Otp\Events
+ * Class ExampleEvent
+ * @package Modules\MODULE_TITLE\Events
  */
-class Test extends Event
+class ExampleEvent extends Event
 {
     /**
      * @var

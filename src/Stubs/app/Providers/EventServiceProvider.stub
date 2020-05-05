@@ -1,22 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tungnt
- * Date: 10/22/19
- * Time: 23:53
- */
 
-namespace Modules\Otp\Providers;
+namespace Modules\MODULE_TITLE\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Laravel\Passport\Events\AccessTokenCreated;
-use Laravel\Passport\Events\RefreshTokenCreated;
-use Modules\Otp\Listeners\PruneOldTokens;
-use Modules\Otp\Listeners\RevokeOldTokens;
 
 /**
  * Class EventServiceProvider
- * @package Modules\Otp\Providers
+ * @package Modules\MODULE_TITLE\Providers
  */
 class EventServiceProvider extends ServiceProvider
 {
@@ -24,7 +14,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-
+        \Modules\MODULE_TITLE\Events\ExampleEvent::class =>[
+            \Modules\MODULE_TITLE\Listeners\ExampleListener::class
+        ]
     ];
 
     /**

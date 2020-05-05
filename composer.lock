@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7fba3cbb70fcf939bf96b92c00115a10",
+    "content-hash": "0311ec2e8db9ffd70d41c38b290b2f7f",
     "packages": [
         {
             "name": "brick/math",
@@ -295,16 +295,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v7.9.2",
+            "version": "v7.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "757b155658ae6da429065ba8f22242fe599824f7"
+                "reference": "b67e267122807a272a66e260378a58b66c35413d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/757b155658ae6da429065ba8f22242fe599824f7",
-                "reference": "757b155658ae6da429065ba8f22242fe599824f7",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b67e267122807a272a66e260378a58b66c35413d",
+                "reference": "b67e267122807a272a66e260378a58b66c35413d",
                 "shasum": ""
             },
             "require": {
@@ -443,7 +443,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-04-28T16:09:20+00:00"
+            "time": "2020-05-05T14:13:32+00:00"
         },
         {
             "name": "league/commonmark",
@@ -3067,16 +3067,16 @@
         },
         {
             "name": "orchestra/testbench-core",
-            "version": "v5.1.3",
+            "version": "v5.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench-core.git",
-                "reference": "22526c9e2ef10551c8032ca27ef3243319d63dd7"
+                "reference": "41ebd765f5b3f1aba366cc6b2f5b3856a1715519"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/22526c9e2ef10551c8032ca27ef3243319d63dd7",
-                "reference": "22526c9e2ef10551c8032ca27ef3243319d63dd7",
+                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/41ebd765f5b3f1aba366cc6b2f5b3856a1715519",
+                "reference": "41ebd765f5b3f1aba366cc6b2f5b3856a1715519",
                 "shasum": ""
             },
             "require": {
@@ -3129,7 +3129,7 @@
                 "orchestral",
                 "testing"
             ],
-            "time": "2020-04-11T10:47:11+00:00"
+            "time": "2020-05-02T13:35:10+00:00"
         },
         {
             "name": "phar-io/manifest",
