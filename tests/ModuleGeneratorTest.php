@@ -9,36 +9,9 @@ use Orchestra\Testbench\TestCase;
  * @param $suffix
  * @return string
  */
-function app_path($suffix)
-{
-    return __DIR__ . '/dist/app' . (strpos($suffix, '/') === 0 ? $suffix : '/' . $suffix);
-}
-
-/**
- * @param $suffix
- * @return string
- */
-function database_path($suffix)
-{
-    return __DIR__ . '/dist/database' . (strpos($suffix, '/') === 0 ? $suffix : '/' . $suffix);
-}
-
-/**
- * @param $suffix
- * @return string
- */
 function base_path($suffix)
 {
     return __DIR__ . '/dist' . (strpos($suffix, '/') === 0 ? $suffix : '/' . $suffix);
-}
-
-/**
- * @param $format
- * @return string
- */
-function date($format)
-{
-    return 'date';
 }
 
 /**
@@ -48,6 +21,14 @@ function date($format)
  */
 class ModuleGeneratorTest extends TestCase
 {
+    /**
+     *
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+    }
+
     /**
      * @param \Illuminate\Foundation\Application $app
      * @return array
@@ -69,11 +50,4 @@ class ModuleGeneratorTest extends TestCase
         $this->assertTrue(file_exists(base_path('/modules/admin')));
     }
 
-    /**
-     * PHPUnit test: vendor/bin/phpunit --filter testModuleHelper tests/ModuleGeneratorTest.php
-     */
-    public function testModuleHelper()
-    {
-        $this->assertTrue(function_exists('module_admin_test_function') && 'admin' === module_admin_test_function());
-    }
 }

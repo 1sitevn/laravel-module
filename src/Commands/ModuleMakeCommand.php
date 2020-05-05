@@ -155,6 +155,8 @@ class ModuleMakeCommand extends Command
     {
         $testView = $this->files->get(__DIR__ . '/../Stubs/resources/views/example.blade.stub');
 
+        $testView = str_replace('MODULE_TITLE', $this->getModuleTitle(), $testView);
+
         $this->putFileContent($this->getModulePath('resources/views/example.blade.php'), $testView);
     }
 

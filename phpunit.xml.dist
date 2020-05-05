@@ -6,9 +6,6 @@
         </testsuite>
     </testsuites>
     <php>
-        <includePath>.</includePath>
-        <env name="NOTIFIER_FIREBASE_KEY" value=""/>
-        <env name="NOTIFIER_FIREBASE_TO_DEVICE" value=""/>
-        <env name="NOTIFIER_FIREBASE_TO_TOPIC" value=""/>
+        <env name="APP_KEY" value="AckfSECXIvnK5r28GVIWUAxmbBSjTsmF"/>
     </php>
 </phpunit>

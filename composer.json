@@ -41,7 +41,7 @@
         "src/",
         "tests/"
       ],
-      "Module\\Admin\\": [
+      "Modules\\Admin\\": [
         "tests/dist/modules/admin/app/"
       ],
       "App\\": "tests/dist/app/"

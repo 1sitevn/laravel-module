@@ -99,7 +99,7 @@ class AppServiceProvider extends ServiceProvider
      */
     private function registerRoutes()
     {
-        $routes = __DIR__ . '/../../route.php';
+        $routes = __DIR__ . '/../../routes.php';
 
         if (!file_exists($routes)) {
             return;
@@ -116,7 +116,7 @@ class AppServiceProvider extends ServiceProvider
     private function registerCommands()
     {
         $this->commands([
-            \Modules\MODULE_TITLE\Console\Commands\Test::class
+            \Modules\MODULE_TITLE\Console\Commands\ExampleCommand::class
         ]);
     }
 }
