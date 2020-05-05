@@ -1,12 +1,16 @@
 <?php
 
-namespace Onesite\Module\Commands;
+namespace OneSite\Module\Commands;
 
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Support\Composer;
 use Illuminate\Filesystem\Filesystem;
 
+/**
+ * Class ModuleMakeCommand
+ * @package OneSite\Module\Commands
+ */
 class ModuleMakeCommand extends Command
 {
     /**
@@ -62,16 +66,21 @@ class ModuleMakeCommand extends Command
         $this->appendRoutes($name);
     }
 
+    /**
+     * @param $moduleName
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
     private function appendRoutes($moduleName)
     {
         $moduleTitle = ucfirst($moduleName);
 
         $newRoutes = $this->files->get(__DIR__ . '/../Stubs/routes.stub');
 
-        $newRoutes = str_replace('|MODEL_TITLE|', $moduleTitle, $newRoutes);
+        $newRoutes = str_replace('|MODULE_TITLE|', $moduleTitle, $newRoutes);
 
-        $this->files->append(
-            app_path('Http/routes.php'),
+        $this->files->makeDirectory(app_path("modules/" . $moduleName), 0755, true);
+        $this->files->put(
+            app_path("modules/{$moduleName}/routes.php"),
             $newRoutes
         );
 

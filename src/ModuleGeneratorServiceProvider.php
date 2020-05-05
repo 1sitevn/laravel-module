@@ -1,9 +1,9 @@
 <?php
 
-namespace Onesite\Module;
+namespace OneSite\Module;
 
 use Illuminate\Support\ServiceProvider;
-use Onesite\Module\Commands\ModuleMakeCommand;
+use OneSite\Module\Commands\ModuleMakeCommand;
 
 /**
  * Class ModuleGeneratorServiceProvider

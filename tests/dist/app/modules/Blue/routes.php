@@ -1,11 +1,11 @@
 /*
 |--------------------------------------------------------------------------
-| |MODULE_TITLE| Routes
+| Blue Routes
 |--------------------------------------------------------------------------
 |
-| Here are all routes relating to the |MODULE_TITLE| module. A restful routing naming
+| Here are all routes relating to the Blue module. A restful routing naming
 | convention has been used, to allow index, show, edit, update, create and
-| store actions on the |MODULE_TITLE| module.
+| store actions on the Blue module.
 |
 */
 
