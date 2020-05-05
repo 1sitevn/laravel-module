@@ -7,7 +7,7 @@ use Orchestra\Testbench\TestCase;
 
 require_once "helpers.php";
 
-class ModuleRouteTest extends TestCase
+class ModuleExampleTest extends TestCase
 {
     /**
      *
@@ -29,7 +29,7 @@ class ModuleRouteTest extends TestCase
     }
 
     /**
-     * PHPUnit test: vendor/bin/phpunit --filter testModuleRoute tests/ModuleRouteTest.php
+     * PHPUnit test: vendor/bin/phpunit --filter testModuleRoute tests/ModuleExampleTest.php
      */
     public function testModuleRoute()
     {
