@@ -32,7 +32,5 @@ class ModuleGeneratorServiceProvider extends ServiceProvider
             return $app[ModuleMakeCommand::class];
         });
         $this->commands('command.onesite.make_module');
-
     }
-
 }
