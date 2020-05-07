@@ -4,15 +4,21 @@ on: [push]
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Repository
       - uses: actions/checkout@v1
+
+      - name: Show files
+        run: |
+          ls -la
 
       - name: Install composer dependencies
         run: composer install --prefer-dist
 
-      - name: Run PHPCS
+      - name: Run PHPCS Coding Standards
         run: php7.3 vendor/bin/phpcs --standard=PSR2 src/
 
       - name: Run PHPUnit test create new module
