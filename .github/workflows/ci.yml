@@ -12,5 +12,11 @@ jobs:
       - name: Install composer dependencies
         run: composer install --prefer-dist
 
-      - name: Run PHPUnit
-        run: php7.3 vendor/bin/phpunit
+      - name: Run PHPCS
+        run: php7.3 vendor/bin/phpcs src/
+
+      - name: Run PHPUnit test create new module
+        run: php7.3 vendor/bin/phpunit tests/ModuleGeneratorTest.php
+
+      - name: Run PHPUnit test admin module
+        run: php7.3 vendor/bin/phpunit tests/ModuleAdminTest.php
