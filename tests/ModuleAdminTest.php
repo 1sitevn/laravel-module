@@ -53,7 +53,6 @@ class ModuleAdminTest extends TestCase
     public function testModuleCommands()
     {
         $this->artisan('module:example')->assertExitCode(0);
-        ;
     }
 
     /**
