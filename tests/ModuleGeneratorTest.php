@@ -49,6 +49,4 @@ class ModuleGeneratorTest extends TestCase
 
         $this->assertTrue(file_exists(base_path('/modules/admin')));
     }
-
-
 }

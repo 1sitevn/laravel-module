@@ -29,6 +29,8 @@ class BaseController extends Controller
      */
     private function getViewPath()
     {
-        return base_path(strtolower(str_replace(['\Http\Controllers', '\\'], ['', '/'], __NAMESPACE__)) . '/resources/views');
+        $namespace = str_replace(['\Http\Controllers', '\\'], ['', '/'], __NAMESPACE__);
+
+        return base_path(strtolower($namespace) . '/resources/views');
     }
 }

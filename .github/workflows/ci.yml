@@ -13,7 +13,7 @@ jobs:
         run: composer install --prefer-dist
 
       - name: Run PHPCS
-        run: php7.3 vendor/bin/phpcs src/
+        run: php7.3 vendor/bin/phpcs --standard=PSR2 src/
 
       - name: Run PHPUnit test create new module
         run: php7.3 vendor/bin/phpunit tests/ModuleGeneratorTest.php
