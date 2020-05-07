@@ -11,10 +11,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v1
 
-      - name: Show files
-        run: |
-          ls -la
-
       - name: Install composer dependencies
         run: composer install --prefer-dist
 
