@@ -42,15 +42,13 @@ Install MakeResource through Composer.
     "require": {
         "onesite/laravel-module": "~1.0"
     }
-    
-Next, update your ```app/Providers/AppServiceProvider.php``` to add the included service provider
-to your ```register``` function:
 
-    public function register()
-    {
-        $this->app->register(\Modules\ModuleName\Providers\AppServiceProvider::class);
-    }
+Next, update your ```config/app.php``` to add the included service provider ```\OneSite\Module\ModuleGeneratorServiceProvider::class```:
 
+    'providers' => [
+        //...
+        \OneSite\Module\ModuleGeneratorServiceProvider::class
+    ],
 
 And you're good to go.
 
@@ -83,6 +81,14 @@ Copy to composer.json and run ```composer dump-autoload``` to register composer 
           ]
         }
       }
+
+Next, update your ```app/Providers/AppServiceProvider.php``` to add the included service provider
+to your ```register``` function:
+
+    public function register()
+    {
+        $this->app->register(\Modules\ModuleName\Providers\AppServiceProvider::class);
+    }
 
 ## Limitations
  
