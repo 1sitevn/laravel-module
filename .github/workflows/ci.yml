@@ -17,8 +17,10 @@ jobs:
       - name: Run PHPCS Coding Standards
         run: php7.3 vendor/bin/phpcs --standard=PSR2 src/
 
-      - name: Run PHPUnit test create new module
-        run: php7.3 vendor/bin/phpunit tests/ModuleGeneratorTest.php
-
-      - name: Run PHPUnit test admin module
-        run: php7.3 vendor/bin/phpunit --filter testModuleHelpers tests/ModuleAdminTest.php
+      - name: Run PHPUnit test
+        run: |
+          php7.3 vendor/bin/phpunit tests/ModuleGeneratorTest.php
+          php7.3 vendor/bin/phpunit --filter testModuleControllers tests/ModuleAdminTest.php
+          php7.3 vendor/bin/phpunit --filter testModuleCommands tests/ModuleAdminTest.php
+          php7.3 vendor/bin/phpunit --filter testModuleEvents tests/ModuleAdminTest.php
+          php7.3 vendor/bin/phpunit --filter testModuleHelpers tests/ModuleAdminTest.php
