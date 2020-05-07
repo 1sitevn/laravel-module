@@ -21,4 +21,4 @@ jobs:
         run: php7.3 vendor/bin/phpunit tests/ModuleGeneratorTest.php
 
       - name: Run PHPUnit test admin module
-        run: php7.3 vendor/bin/phpunit tests/ModuleAdminTest.php
+        run: php7.3 vendor/bin/phpunit --filter testModuleHelpers tests/ModuleAdminTest.php
