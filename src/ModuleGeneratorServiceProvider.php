@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 /**
  * Class ModuleGeneratorServiceProvider
+ *
  * @package DrawMyAttention\ResourceGenerator
  */
 class ModuleGeneratorServiceProvider extends ServiceProvider
@@ -27,9 +28,11 @@ class ModuleGeneratorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('command.onesite.make_module', function ($app) {
-            return $app[ModuleMakeCommand::class];
-        });
+        $this->app->singleton(
+            'command.onesite.make_module', function ($app) {
+                return $app[ModuleMakeCommand::class];
+            }
+        );
         $this->commands('command.onesite.make_module');
     }
 }

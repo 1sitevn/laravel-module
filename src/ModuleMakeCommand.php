@@ -8,6 +8,7 @@ use Illuminate\Filesystem\Filesystem;
 
 /**
  * Class ModuleMakeCommand
+ *
  * @package OneSite\Module
  */
 class ModuleMakeCommand extends Command
@@ -82,7 +83,7 @@ class ModuleMakeCommand extends Command
 
 
     /**
-     * @param string $suffix
+     * @param  string $suffix
      * @return string
      */
     private function getModulePath($suffix = '')

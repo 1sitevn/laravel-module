@@ -7,6 +7,7 @@ use Illuminate\Filesystem\Filesystem;
 
 /**
  * Class FileGenerator
+ *
  * @package OneSite\Module
  */
 class FileGenerator implements FileGeneratorInterface
@@ -26,10 +27,10 @@ class FileGenerator implements FileGeneratorInterface
     }
 
     /**
-     * @param $filePath
-     * @param $targetFilePath
-     * @param array $searchContent
-     * @param array $replaceContent
+     * @param  $filePath
+     * @param  $targetFilePath
+     * @param  array $searchContent
+     * @param  array $replaceContent
      * @return mixed|void
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
