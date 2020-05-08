@@ -29,7 +29,8 @@ class ModuleGeneratorServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(
-            'command.onesite.make_module', function ($app) {
+            'command.onesite.make_module',
+            function ($app) {
                 return $app[ModuleMakeCommand::class];
             }
         );

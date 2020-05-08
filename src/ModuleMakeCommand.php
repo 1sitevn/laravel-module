@@ -33,6 +33,7 @@ class ModuleMakeCommand extends Command
      * @var \Illuminate\Filesystem\Filesystem
      */
     private $files;
+
     /**
      * @var FileGenerator
      */
@@ -43,6 +44,11 @@ class ModuleMakeCommand extends Command
      */
     private $moduleName;
 
+    /**
+     * ModuleMakeCommand constructor.
+     *
+     * @param Filesystem $files
+     */
     public function __construct(Filesystem $files)
     {
         parent::__construct();
@@ -92,6 +98,15 @@ class ModuleMakeCommand extends Command
     }
 
     /**
+     * @param  string $suffix
+     * @return string
+     */
+    private function getStubPath($suffix = '')
+    {
+        return __DIR__ . '/Stubs/' . (strpos($suffix, '/') === 0 ? $suffix : '/' . $suffix);
+    }
+
+    /**
      * @return string
      */
     private function getModuleName()
@@ -113,7 +128,7 @@ class ModuleMakeCommand extends Command
     private function createRoutes()
     {
         $this->fileGenerator->generator(
-            __DIR__ . '/Stubs/routes.stub',
+            $this->getStubPath('routes.stub'),
             $this->getModulePath('routes.php'),
             ['MODULE_NAME', 'MODULE_TITLE'],
             [$this->getModuleName(), $this->getModuleTitle()]
@@ -126,14 +141,14 @@ class ModuleMakeCommand extends Command
     private function createControllers()
     {
         $this->fileGenerator->generator(
-            __DIR__ . '/Stubs/app/Http/Controllers/BaseController.stub',
+            $this->getStubPath('app/Http/Controllers/BaseController.stub'),
             $this->getModulePath('app/Http/Controllers/BaseController.php'),
             ['MODULE_NAME', 'MODULE_TITLE'],
             [$this->getModuleName(), $this->getModuleTitle()]
         );
 
         $this->fileGenerator->generator(
-            __DIR__ . '/Stubs/app/Http/Controllers/ExampleController.stub',
+            $this->getStubPath('app/Http/Controllers/ExampleController.stub'),
             $this->getModulePath('app/Http/Controllers/ExampleController.php'),
             ['MODULE_NAME', 'MODULE_TITLE', 'ControllerClass'],
             [$this->getModuleName(), $this->getModuleTitle(), 'ExampleController']
@@ -146,7 +161,7 @@ class ModuleMakeCommand extends Command
     private function createResources()
     {
         $this->fileGenerator->generator(
-            __DIR__ . '/Stubs/resources/views/example.blade.stub',
+            $this->getStubPath('resources/views/example.blade.stub'),
             $this->getModulePath('resources/views/example.blade.php'),
             ['MODULE_NAME', 'MODULE_TITLE'],
             [$this->getModuleName(), $this->getModuleTitle()]
@@ -159,14 +174,14 @@ class ModuleMakeCommand extends Command
     private function createProviders()
     {
         $this->fileGenerator->generator(
-            __DIR__ . '/Stubs/app/Providers/AppServiceProvider.stub',
+            $this->getStubPath('app/Providers/AppServiceProvider.stub'),
             $this->getModulePath('app/Providers/AppServiceProvider.php'),
             ['MODULE_NAME', 'MODULE_TITLE'],
             [$this->getModuleName(), $this->getModuleTitle()]
         );
 
         $this->fileGenerator->generator(
-            __DIR__ . '/Stubs/app/Providers/EventServiceProvider.stub',
+            $this->getStubPath('app/Providers/EventServiceProvider.stub'),
             $this->getModulePath('app/Providers/EventServiceProvider.php'),
             ['MODULE_NAME', 'MODULE_TITLE'],
             [$this->getModuleName(), $this->getModuleTitle()]
@@ -179,14 +194,14 @@ class ModuleMakeCommand extends Command
     private function createEvents()
     {
         $this->fileGenerator->generator(
-            __DIR__ . '/Stubs/app/Events/ExampleEvent.stub',
+            $this->getStubPath('app/Events/ExampleEvent.stub'),
             $this->getModulePath('app/Events/ExampleEvent.php'),
             ['MODULE_NAME', 'MODULE_TITLE'],
             [$this->getModuleName(), $this->getModuleTitle()]
         );
 
         $this->fileGenerator->generator(
-            __DIR__ . '/Stubs/app/Listeners/ExampleListener.stub',
+            $this->getStubPath('app/Listeners/ExampleListener.stub'),
             $this->getModulePath('app/Listeners/ExampleListener.php'),
             ['MODULE_NAME', 'MODULE_TITLE'],
             [$this->getModuleName(), $this->getModuleTitle()]
@@ -199,7 +214,7 @@ class ModuleMakeCommand extends Command
     private function createConsoles()
     {
         $this->fileGenerator->generator(
-            __DIR__ . '/Stubs/app/Console/Commands/ExampleCommand.stub',
+            $this->getStubPath('app/Console/Commands/ExampleCommand.stub'),
             $this->getModulePath('app/Console/Commands/ExampleCommand.php'),
             ['MODULE_NAME', 'MODULE_TITLE'],
             [$this->getModuleName(), $this->getModuleTitle()]
@@ -212,7 +227,7 @@ class ModuleMakeCommand extends Command
     private function createModels()
     {
         $this->fileGenerator->generator(
-            __DIR__ . '/Stubs/app/Models/Example.stub',
+            $this->getStubPath('app/Models/Example.stub'),
             $this->getModulePath('app/Models/Example.php'),
             ['MODULE_NAME', 'MODULE_TITLE'],
             [$this->getModuleName(), $this->getModuleTitle()]
@@ -225,14 +240,14 @@ class ModuleMakeCommand extends Command
     private function createContracts()
     {
         $this->fileGenerator->generator(
-            __DIR__ . '/Stubs/app/Contracts/Models/BaseModelInterface.stub',
+            $this->getStubPath('app/Contracts/Models/BaseModelInterface.stub'),
             $this->getModulePath('app/Contracts/Models/BaseModelInterface.php'),
             ['MODULE_NAME', 'MODULE_TITLE'],
             [$this->getModuleName(), $this->getModuleTitle()]
         );
 
         $this->fileGenerator->generator(
-            __DIR__ . '/Stubs/app/Contracts/Models/ExampleModelInterface.stub',
+            $this->getStubPath('app/Contracts/Models/ExampleModelInterface.stub'),
             $this->getModulePath('app/Contracts/Models/ExampleModelInterface.php'),
             ['MODULE_NAME', 'MODULE_TITLE'],
             [$this->getModuleName(), $this->getModuleTitle()]
@@ -245,14 +260,14 @@ class ModuleMakeCommand extends Command
     private function createServices()
     {
         $this->fileGenerator->generator(
-            __DIR__ . '/Stubs/app/Services/Models/BaseModelService.stub',
+            $this->getStubPath('app/Services/Models/BaseModelService.stub'),
             $this->getModulePath('app/Services/Models/BaseModelService.php'),
             ['MODULE_NAME', 'MODULE_TITLE'],
             [$this->getModuleName(), $this->getModuleTitle()]
         );
 
         $this->fileGenerator->generator(
-            __DIR__ . '/Stubs/app/Services/Models/ExampleModelService.stub',
+            $this->getStubPath('app/Services/Models/ExampleModelService.stub'),
             $this->getModulePath('app/Services/Models/ExampleModelService.php'),
             ['MODULE_NAME', 'MODULE_TITLE'],
             [$this->getModuleName(), $this->getModuleTitle()]
@@ -265,7 +280,7 @@ class ModuleMakeCommand extends Command
     private function createHelpers()
     {
         $this->fileGenerator->generator(
-            __DIR__ . '/Stubs/helpers.stub',
+            $this->getStubPath('helpers.stub'),
             $this->getModulePath('helpers.php'),
             ['MODULE_NAME', 'MODULE_TITLE'],
             [$this->getModuleName(), $this->getModuleTitle()]
@@ -278,7 +293,7 @@ class ModuleMakeCommand extends Command
     private function createConfigs()
     {
         $this->fileGenerator->generator(
-            __DIR__ . '/Stubs/configs/example.stub.php',
+            $this->getStubPath('configs/example.stub.php'),
             $this->getModulePath('configs/modules/' . $this->moduleName . '.php'),
             ['MODULE_NAME', 'MODULE_TITLE'],
             [$this->getModuleName(), $this->getModuleTitle()]
