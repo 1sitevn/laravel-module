@@ -3,7 +3,6 @@
 
 namespace OneSite\Module;
 
-
 /**
  * Interface FileGeneratorInterface
  * @package OneSite\Module
