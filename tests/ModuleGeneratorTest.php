@@ -1,8 +1,7 @@
 <?php
 
-namespace OneSite\Module\Commands;
+namespace OneSite\Module;
 
-use OneSite\Module\ModuleGeneratorServiceProvider;
 use Orchestra\Testbench\TestCase;
 
 /**

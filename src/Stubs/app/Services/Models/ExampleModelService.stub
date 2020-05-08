@@ -1,0 +1,22 @@
+<?php
+
+namespace Modules\MODULE_TITLE\Services\Models;
+
+use Modules\MODULE_TITLE\Contracts\Models\ExampleModelInterface;
+use Modules\MODULE_TITLE\Models\Example;
+
+/**
+ * Class ExampleModelService
+ * @package Modules\MODULE_TITLE\Services\Models
+ */
+class ExampleModelService extends BaseModelService implements ExampleModelInterface
+{
+    /**
+     * @return mixed|string
+     */
+    public function getModel()
+    {
+        return Example::class;
+    }
+
+}

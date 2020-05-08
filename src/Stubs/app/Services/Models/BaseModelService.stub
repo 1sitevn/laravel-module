@@ -1,0 +1,249 @@
+<?php
+
+namespace Modules\MODULE_TITLE\Services\Models;
+
+use Modules\MODULE_TITLE\Contracts\Models\BaseModelInterface;
+
+
+/**
+ * Class BaseModelService
+ * @package Modules\MODULE_TITLE\Services\Models
+ */
+abstract class BaseModelService implements BaseModelInterface
+{
+
+    /**
+     * @var \Illuminate\Database\Eloquent\Model $model
+     */
+    protected $model;
+
+    /**
+     * Base constructor.
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function __construct()
+    {
+        $this->model = app()->make($this->getModel());
+    }
+
+    /**
+     * @return mixed
+     */
+    abstract public function getModel();
+
+    /**
+     * @param array $conditions
+     * @param array $options
+     * @return mixed
+     * @throws \Exception
+     */
+    public function findAll(array $conditions = [], array $options = [])
+    {
+        $data = $this->filter($this->model, $conditions);
+
+        if (!empty($options['scope'])) {
+            $data = $this->scope($data, $options['scope']);
+        }
+
+        if (!empty($options['with'])) {
+            $data = $data->with($options['with']);
+        }
+
+        if (!empty($options['order_by'])) {
+            $data = $this->order($data, $options['order_by']);
+        }
+
+        if (!empty($options['per_page'])) {
+            return $data->paginate($options['per_page']);
+        }
+
+        if (!empty($options['offset'])) {
+            $data->offset($options['offset']);
+        }
+
+        if (!empty($options['limit'])) {
+            $data->limit($options['limit']);
+        }
+
+        return $data->get();
+    }
+
+
+    /**
+     * @param $id
+     * @param array $conditions
+     * @param array $options
+     * @return mixed
+     * @throws \Exception
+     */
+    public function find($id, array $conditions = [], array $options = [])
+    {
+        $data = $this->filter($this->model, $conditions);
+
+        if (!empty($options['scope'])) {
+            $data = $this->scope($data, $options['scope']);
+        }
+
+        if (!empty($options['with'])) {
+            $data = $data->with($options['with']);
+        }
+
+        return $data->find($id);
+    }
+
+
+    /**
+     * @param array $conditions
+     * @param array $options
+     * @return mixed
+     * @throws \Exception
+     */
+    public function findByAttributes(array $conditions = [], array $options = [])
+    {
+        $data = $this->filter($this->model, $conditions);
+
+        if (!empty($options['scope'])) {
+            $data = $this->scope($data, $options['scope']);
+        }
+
+        if (!empty($options['with'])) {
+            $data = $data->with($options['with']);
+        }
+
+        if (!empty($options['order_by'])) {
+            $data = $this->order($data, $options['order_by']);
+        }
+
+        return $data->first();
+    }
+
+    /**
+     * @param array $conditions
+     * @param array $options
+     * @return mixed
+     * @throws \Exception
+     */
+    public function exists(array $conditions = [], array $options = [])
+    {
+        $data = $this->filter($this->model, $conditions);
+
+        if (!empty($options['scope'])) {
+            $data = $this->scope($data, $options['scope']);
+        }
+
+        return $data->exists();
+    }
+
+
+    /**
+     * @param array $params
+     * @return mixed|void
+     */
+    public function store(array $params = [])
+    {
+        return $this->model->create($params);
+    }
+
+    /**
+     * @param $id
+     * @param array $params
+     * @return mixed|void
+     */
+    public function update($id, array $params = [])
+    {
+        return $this->model->where('id', $id)->update($params);
+    }
+
+    /**
+     * @param $id
+     * @return mixed|void
+     */
+    public function destroy($id)
+    {
+        return $this->model->where('id', $id)->update([
+            'deleted' => 1
+        ]);
+    }
+
+    /**
+     * @param $context
+     * @param $condition
+     * @return mixed
+     * @throws \Exception
+     */
+    private function query($context, $condition)
+    {
+        if (is_string($condition)) {
+            return $context->whereRaw($condition);
+        }
+
+        if (!is_array($condition)) {
+            throw new \Exception('Condition is missing!');
+        }
+
+        list($column, $operator, $value) = $condition;
+
+        if ($operator == 'in' && is_array($value)) {
+            $context = $context->whereIn($column, $value);
+        } else {
+            $context = $context->where($column, $operator, $value);
+        }
+
+        return $context;
+    }
+
+    /**
+     * @param $context
+     * @param array $conditions
+     * @return mixed
+     * @throws \Exception
+     */
+    private function filter($context, array $conditions = [])
+    {
+        if (empty($conditions)) {
+            return $context;
+        }
+
+        foreach ($conditions as $clause => $condition) {
+            $context = $this->query($context, $condition);
+        }
+
+        return $context;
+    }
+
+    /**
+     * @param $context
+     * @param array $scopes
+     * @return mixed
+     */
+    private function scope($context, array $scopes = [])
+    {
+        if (empty($scopes)) {
+            return $context;
+        }
+
+        foreach ($scopes as $scope) {
+            $context = $context->$scope();
+        }
+
+        return $context;
+    }
+
+    /**
+     * @param $context
+     * @param array $attributes
+     * @return mixed
+     */
+    private function order($context, array $attributes = [])
+    {
+        if (empty($attributes)) {
+            return $context;
+        }
+
+        foreach ($attributes as $column => $type) {
+            $context = $context->orderBy($column, $type);
+        }
+
+        return $context;
+    }
+}

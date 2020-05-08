@@ -5,6 +5,8 @@ namespace Modules\MODULE_TITLE\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Modules\MODULE_TITLE\Contracts\Models\ExampleModelInterface;
+use Modules\MODULE_TITLE\Services\Models\ExampleModelService;
 
 /**
  * Class AppServiceProvider
@@ -33,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
      */
 
     public $singletons = [
-
+        // ExampleModelInterface::class=>ExampleModelService::class
     ];
 
     /**

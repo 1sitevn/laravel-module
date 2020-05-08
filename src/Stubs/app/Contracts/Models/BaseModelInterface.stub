@@ -1,0 +1,63 @@
+<?php
+
+namespace Modules\MODULE_TITLE\Contracts\Models;
+
+
+/**
+ * Interface BaseModelInterface
+ * @package Modules\MODULE_TITLE\Contracts\Models
+ */
+interface BaseModelInterface
+{
+
+    /**
+     * @param array $conditions
+     * @param array $options
+     * @return mixed
+     */
+    public function findAll(array $conditions = [], array $options = []);
+
+
+    /**
+     * @param $id
+     * @param array $conditions
+     * @param array $options
+     * @return mixed
+     */
+    public function find($id, array $conditions = [], array $options = []);
+
+
+    /**
+     * @param array $conditions
+     * @param array $options
+     * @return mixed
+     */
+    public function findByAttributes(array $conditions = [], array $options = []);
+
+    /**
+     * @param array $conditions
+     * @param array $options
+     * @return mixed
+     */
+    public function exists(array $conditions = [], array $options = []);
+
+    /**
+     * @param array $params
+     * @return mixed
+     */
+    public function store(array $params = []);
+
+    /**
+     * @param $id
+     * @param array $params
+     * @return mixed
+     */
+    public function update($id, array $params = []);
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function destroy($id);
+
+}

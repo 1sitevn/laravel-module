@@ -3,7 +3,6 @@
 namespace OneSite\Module;
 
 use Illuminate\Support\ServiceProvider;
-use OneSite\Module\Commands\ModuleMakeCommand;
 
 /**
  * Class ModuleGeneratorServiceProvider

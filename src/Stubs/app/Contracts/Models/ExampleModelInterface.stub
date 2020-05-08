@@ -1,0 +1,13 @@
+<?php
+
+namespace Modules\MODULE_TITLE\Contracts\Models;
+
+
+/**
+ * Interface ExampleModelInterface
+ * @package Modules\MODULE_TITLE\Contracts\Models
+ */
+interface ExampleModelInterface extends BaseModelInterface
+{
+
+}

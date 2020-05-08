@@ -2,15 +2,13 @@
 
 namespace Modules\MODULE_TITLE\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 
-
 /**
- * Class ExampleModel
+ * Class Example
  * @package Modules\MODULE_TITLE\Models
  */
-class ExampleModel extends Model
+class Example extends Model
 {
     /**
      * @var array
