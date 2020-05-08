@@ -20,4 +20,3 @@ jobs:
       - name: Run PHPUnit test
         run: |
           php7.3 vendor/bin/phpunit tests/ModuleGeneratorTest.php
-          php7.3 vendor/bin/phpunit tests/ModuleAdminTest.php
