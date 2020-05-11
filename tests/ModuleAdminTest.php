@@ -43,6 +43,8 @@ class ModuleAdminTest extends TestCase
         // Visit /test/admin and see "Laravel Admin Module" on it
         $response = $this->get('test/admin');
 
+        var_dump($response->getContent());
+
         $response->assertStatus(200);
         $response->assertSee('Laravel Admin Module');
     }
