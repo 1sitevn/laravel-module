@@ -40,22 +40,30 @@ class ModuleMakeCommand extends Command
     private $fileGenerator;
 
     /**
+     * @var Composer
+     */
+    private $composer;
+
+    /**
      * @var
      */
     private $moduleName;
 
+
     /**
      * ModuleMakeCommand constructor.
-     *
      * @param Filesystem $files
+     * @param Composer $composer
      */
-    public function __construct(Filesystem $files)
+    public function __construct(Filesystem $files, Composer $composer)
     {
         parent::__construct();
 
         $this->files = $files;
 
         $this->fileGenerator = new FileGenerator();
+
+        $this->composer = $composer;
     }
 
     /**
@@ -85,11 +93,15 @@ class ModuleMakeCommand extends Command
         $this->createConfigs();
         $this->createServices();
         $this->createOthers();
+
+        if (env('APP_ENV') != 'testing') {
+            $this->composer->dumpAutoloads();
+        }
     }
 
 
     /**
-     * @param  string $suffix
+     * @param string $suffix
      * @return string
      */
     private function getModulePath($suffix = '')
@@ -98,7 +110,7 @@ class ModuleMakeCommand extends Command
     }
 
     /**
-     * @param  string $suffix
+     * @param string $suffix
      * @return string
      */
     private function getStubPath($suffix = '')
