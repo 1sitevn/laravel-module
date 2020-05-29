@@ -32,218 +32,198 @@ abstract class BaseModelService implements BaseModelInterface
     abstract public function getModel();
 
     /**
-     * @param array $conditions
-     * @param array $options
-     * @return mixed
-     * @throws \Exception
-     */
-    public function findAll(array $conditions = [], array $options = [])
-    {
-        $data = $this->filter($this->model, $conditions);
-
-        if (!empty($options['scope'])) {
-            $data = $this->scope($data, $options['scope']);
-        }
-
-        if (!empty($options['with'])) {
-            $data = $data->with($options['with']);
-        }
-
-        if (!empty($options['order_by'])) {
-            $data = $this->order($data, $options['order_by']);
-        }
-
-        if (!empty($options['per_page'])) {
-            return $data->paginate($options['per_page']);
-        }
-
-        if (!empty($options['offset'])) {
-            $data->offset($options['offset']);
-        }
-
-        if (!empty($options['limit'])) {
-            $data->limit($options['limit']);
-        }
-
-        return $data->get();
-    }
-
-
-    /**
-     * @param $id
-     * @param array $conditions
-     * @param array $options
-     * @return mixed
-     * @throws \Exception
-     */
-    public function find($id, array $conditions = [], array $options = [])
-    {
-        $data = $this->filter($this->model, $conditions);
-
-        if (!empty($options['scope'])) {
-            $data = $this->scope($data, $options['scope']);
-        }
-
-        if (!empty($options['with'])) {
-            $data = $data->with($options['with']);
-        }
-
-        return $data->find($id);
-    }
-
-
-    /**
-     * @param array $conditions
-     * @param array $options
-     * @return mixed
-     * @throws \Exception
-     */
-    public function findByAttributes(array $conditions = [], array $options = [])
-    {
-        $data = $this->filter($this->model, $conditions);
-
-        if (!empty($options['scope'])) {
-            $data = $this->scope($data, $options['scope']);
-        }
-
-        if (!empty($options['with'])) {
-            $data = $data->with($options['with']);
-        }
-
-        if (!empty($options['order_by'])) {
-            $data = $this->order($data, $options['order_by']);
-        }
-
-        return $data->first();
-    }
-
-    /**
-     * @param array $conditions
-     * @param array $options
-     * @return mixed
-     * @throws \Exception
-     */
-    public function exists(array $conditions = [], array $options = [])
-    {
-        $data = $this->filter($this->model, $conditions);
-
-        if (!empty($options['scope'])) {
-            $data = $this->scope($data, $options['scope']);
-        }
-
-        return $data->exists();
-    }
-
-
-    /**
-     * @param array $params
-     * @return mixed|void
-     */
-    public function store(array $params = [])
-    {
-        return $this->model->create($params);
-    }
-
-    /**
-     * @param $id
-     * @param array $params
-     * @return mixed|void
-     */
-    public function update($id, array $params = [])
-    {
-        return $this->model->where('id', $id)->update($params);
-    }
-
-    /**
-     * @param $id
-     * @return mixed|void
-     */
-    public function destroy($id)
-    {
-        return $this->model->where('id', $id)->update([
-            'deleted' => 1
-        ]);
-    }
-
-    /**
-     * @param $context
-     * @param $condition
-     * @return mixed
-     * @throws \Exception
-     */
-    private function query($context, $condition)
-    {
-        if (is_string($condition)) {
-            return $context->whereRaw($condition);
-        }
-
-        if (!is_array($condition)) {
-            throw new \Exception('Condition is missing!');
-        }
-
-        list($column, $operator, $value) = $condition;
-
-        if ($operator == 'in' && is_array($value)) {
-            $context = $context->whereIn($column, $value);
-        } else {
-            $context = $context->where($column, $operator, $value);
-        }
-
-        return $context;
-    }
-
-    /**
-     * @param $context
-     * @param array $conditions
-     * @return mixed
-     * @throws \Exception
-     */
-    private function filter($context, array $conditions = [])
-    {
-        if (empty($conditions)) {
-            return $context;
-        }
-
-        foreach ($conditions as $clause => $condition) {
-            $context = $this->query($context, $condition);
-        }
-
-        return $context;
-    }
-
-    /**
-     * @param $context
-     * @param array $scopes
+     * @param array $columns
      * @return mixed
      */
-    private function scope($context, array $scopes = [])
+    public function first($columns = ['*'])
     {
-        if (empty($scopes)) {
-            return $context;
-        }
-
-        foreach ($scopes as $scope) {
-            $context = $context->$scope();
-        }
-
-        return $context;
+        return $this->model->first($columns);
     }
 
     /**
-     * @param $context
+     * @param array $columns
+     * @return mixed
+     */
+    public function get($columns = ['*'])
+    {
+        return $this->model->get($columns);
+    }
+
+    /**
+     * @return bool|mixed
+     */
+    public function exists()
+    {
+        return $this->model->exists();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Model|mixed
+     */
+    public function refresh()
+    {
+        return $this->model->refresh();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function count()
+    {
+        return $this->model->count();
+    }
+
+    /**
      * @param array $attributes
      * @return mixed
      */
-    private function order($context, array $attributes = [])
+    public function create(array $attributes = [])
     {
-        if (empty($attributes)) {
-            return $context;
-        }
-
-        foreach ($attributes as $column => $type) {
-            $context = $context->orderBy($column, $type);
-        }
-
-        return $context;
+        return $this->model->create($attributes);
     }
+
+    /**
+     * @param array $values
+     * @return bool|mixed
+     */
+    public function update(array $values)
+    {
+        return $this->model->update($values);
+    }
+
+    /**
+     * @return bool|mixed|null
+     * @throws \Exception
+     */
+    public function delete()
+    {
+        return $this->model->delete();
+    }
+
+    /**
+     * @param $column
+     * @param null $operator
+     * @param null $value
+     * @param string $boolean
+     * @return mixed
+     */
+    public function where($column, $operator = null, $value = null, $boolean = 'and')
+    {
+        return $this->model->where($column, $operator, $value, $boolean);
+    }
+
+    /**
+     * @param $column
+     * @param null $operator
+     * @param null $value
+     * @return mixed
+     */
+    public function orWhere($column, $operator = null, $value = null)
+    {
+        return $this->model->where($column, $operator, $value);
+    }
+
+    /**
+     * @param $column
+     * @param $values
+     * @param string $boolean
+     * @param bool $not
+     * @return mixed
+     */
+    public function whereIn($column, $values, $boolean = 'and', $not = false)
+    {
+        return $this->model->whereIn($column, $values, $boolean, $not);
+    }
+
+    /**
+     * @param $column
+     * @param $values
+     * @return mixed
+     */
+    public function orWhereIn($column, $values)
+    {
+        return $this->model->orWhereIn($column, $values);
+    }
+
+    /**
+     * @param $column
+     * @param $values
+     * @param string $boolean
+     * @return mixed
+     */
+    public function whereNotIn($column, $values, $boolean = 'and')
+    {
+        return $this->model->whereNotIn($column, $values, $boolean);
+    }
+
+    /**
+     * @param $column
+     * @param $values
+     * @return mixed
+     */
+    public function orWhereNotIn($column, $values)
+    {
+        return $this->model->whereNotIn($column, $values);
+    }
+
+    /**
+     * @param $column
+     * @param string $boolean
+     * @return mixed
+     */
+    public function whereNotNull($column, $boolean = 'and')
+    {
+        return $this->model->whereNotNull($column, $boolean);
+    }
+
+    /**
+     * @param $column
+     * @param string $direction
+     * @return mixed
+     */
+    public function orderBy($column, $direction = 'asc')
+    {
+        return $this->model->orderBy($column, $direction);
+    }
+
+    /**
+     * @param $relations
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|mixed
+     */
+    public function with($relations)
+    {
+        return $this->model->with($relations);
+    }
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function limit($value)
+    {
+        return $this->model->limit($value);
+    }
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function offset($value)
+    {
+        return $this->model->offset($value);
+    }
+
+    /**
+     * @param int $perPage
+     * @param array $columns
+     * @param string $pageName
+     * @param null $page
+     * @return mixed
+     */
+    public function paginate($perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
+    {
+        return $this->model->paginate($perPage, $columns, $pageName, $page);
+    }
+
+
 }
