@@ -11,53 +11,135 @@ interface BaseModelInterface
 {
 
     /**
-     * @param array $conditions
-     * @param array $options
+     * @param array $columns
      * @return mixed
      */
-    public function findAll(array $conditions = [], array $options = []);
-
+    public function first($columns = ['*']);
 
     /**
-     * @param $id
-     * @param array $conditions
-     * @param array $options
+     * @param array $columns
      * @return mixed
      */
-    public function find($id, array $conditions = [], array $options = []);
-
+    public function get($columns = ['*']);
 
     /**
-     * @param array $conditions
-     * @param array $options
      * @return mixed
      */
-    public function findByAttributes(array $conditions = [], array $options = []);
+    public function exists();
 
     /**
-     * @param array $conditions
-     * @param array $options
      * @return mixed
      */
-    public function exists(array $conditions = [], array $options = []);
+    public function refresh();
 
     /**
-     * @param array $params
      * @return mixed
      */
-    public function store(array $params = []);
+    public function count();
 
     /**
-     * @param $id
-     * @param array $params
+     * @param array $attributes
      * @return mixed
      */
-    public function update($id, array $params = []);
+    public function create(array $attributes = []);
 
     /**
-     * @param $id
+     * @param array $values
      * @return mixed
      */
-    public function destroy($id);
+    public function update(array $values);
 
+    /**
+     * @return mixed
+     */
+    public function delete();
+
+    /**
+     * @param $column
+     * @param null $operator
+     * @param null $value
+     * @param string $boolean
+     * @return mixed
+     */
+    public function where($column, $operator = null, $value = null, $boolean = 'and');
+
+    /**
+     * @param $column
+     * @param null $operator
+     * @param null $value
+     * @return mixed
+     */
+    public function orWhere($column, $operator = null, $value = null);
+
+    /**
+     * @param $column
+     * @param $values
+     * @param string $boolean
+     * @param bool $not
+     * @return mixed
+     */
+    public function whereIn($column, $values, $boolean = 'and', $not = false);
+
+    /**
+     * @param $column
+     * @param $values
+     * @return mixed
+     */
+    public function orWhereIn($column, $values);
+
+    /**
+     * @param $column
+     * @param $values
+     * @param string $boolean
+     * @return mixed
+     */
+    public function whereNotIn($column, $values, $boolean = 'and');
+
+    /**
+     * @param $column
+     * @param $values
+     * @return mixed
+     */
+    public function orWhereNotIn($column, $values);
+
+    /**
+     * @param $column
+     * @param string $boolean
+     * @return mixed
+     */
+    public function whereNotNull($column, $boolean = 'and');
+
+    /**
+     * @param $column
+     * @param string $direction
+     * @return mixed
+     */
+    public function orderBy($column, $direction = 'asc');
+
+    /**
+     * @param $relations
+     * @return mixed
+     */
+    public function with($relations);
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function limit($value);
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function offset($value);
+
+    /**
+     * @param int $perPage
+     * @param array $columns
+     * @param string $pageName
+     * @param null $page
+     * @return mixed
+     */
+    public function paginate($perPage = 15, $columns = ['*'], $pageName = 'page', $page = null);
 }
