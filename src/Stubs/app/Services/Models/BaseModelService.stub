@@ -32,6 +32,16 @@ abstract class BaseModelService implements BaseModelInterface
     abstract public function getModel();
 
     /**
+     * @param $query
+     * @param array $bindings
+     * @return mixed
+     */
+    public function select($query, $bindings = [])
+    {
+        return $this->model->select($query, $bindings, true);
+    }
+
+    /**
      * @param array $columns
      * @return mixed
      */

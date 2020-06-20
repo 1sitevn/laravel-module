@@ -11,6 +11,13 @@ interface BaseModelInterface
 {
 
     /**
+     * @param $query
+     * @param array $bindings
+     * @return mixed
+     */
+    public function select($query, $bindings = []);
+
+    /**
      * @param array $columns
      * @return mixed
      */
