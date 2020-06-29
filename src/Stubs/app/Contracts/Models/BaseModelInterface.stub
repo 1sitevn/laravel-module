@@ -11,6 +11,11 @@ interface BaseModelInterface
 {
 
     /**
+     * @return mixed
+     */
+    public function toSql();
+
+    /**
      * @param $query
      * @param array $bindings
      * @return mixed
